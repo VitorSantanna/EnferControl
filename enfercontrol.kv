@@ -1,0 +1,310 @@
+#:import random random.random
+#coding: utf-8
+
+<TelaPrincipal>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'background.jpg'
+    BoxLayout:
+        size_hint: .3, None
+        height: 100
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: 'vertical'
+        Button:
+            text: "Cadastrar Relatório"
+            on_release: root.manager.current = 'Tela de Cadastro'
+            markup: 1
+        Button:
+            text: "Atualizar Relatório"
+            on_release: root.manager.current = 'Tela de Atualizaçao'
+            markup: 1
+        Button:
+            text: 'Consultar Relatório'
+            on_release: root.manager.current = 'Tela de Consulta'
+<TelaCadastro>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'background.jpg'
+    txtnome: txtnome
+    txttitulo: txttitulo
+    spnturma: spnturma
+    spnlocal: spnlocal
+    spnsetor: spnsetor
+    spnhoras: spnhoras
+    txtinicio: txtinicio
+    txtfim: txtfim
+    txtatividade: txtatividade
+    GridLayout:
+        cols:2
+	    Label:
+	        id:lblNome
+		    text: "Nome: "
+		    color:root.color
+	    TextInput:
+	        id:txtnome
+		    multiline:0
+		Label:
+	        id:lblTitulo
+		    text: "Titulo: "
+		    color:root.color
+	    TextInput:
+	        id:txttitulo
+	        text: 'Relatório de dd/mm/aaaa'
+		    multiline:0
+		Label:
+		    text: "Turma: "
+		    color:root.color
+	    Spinner:
+	        id:spnturma
+	        text: "Selecione a turma!"
+		    values:('3151', '3152', '3251', '3252')
+		    background_color: 200, 0, 0, 1
+		Label:
+		    text: "Local: "
+		    color:root.color
+	    Spinner:
+	        id:spnlocal
+	        text: "Selecione o local!"
+		    values:('Hospital Rocha Faria', 'UPA Jardim Novo')
+		    background_color: 200, 0, 0, 1
+		Label:
+	        id:lblinicio
+		    text: "Data de Inicio: "
+		    color:root.color
+	    TextInput:
+	        id:txtinicio
+	        text:"dd/mm/aaaa"
+	        multiline: 0
+	    Label:
+	        id:lblinicio
+		    text: "Data do Término: "
+		    color:root.color
+	    TextInput:
+	        id:txtfim
+	        text:"dd/mm/aaaa"
+	        multiline: 0
+	    Label:
+		    text: "Setor: "
+		    color:root.color
+	    Spinner:
+	        id:spnsetor
+	        background_color: 200, 0, 0, 1
+	        text: "Selecione um setor!"
+		    values:('Emergência', 'Saúde Mental', 'Saúde da Mulher e da Criança', 'Saúde Coletiva','Hospital Geral', 'Posto')
+	    Label:
+		    text: "Horas Efetuadas: "
+		    color:root.color
+	    Spinner:
+	        id:spnhoras
+	        background_color: 200, 0, 0, 1
+	        text: "1"
+		    values:('123456')
+	    Label:
+		    text: "Atividades observadas: "
+		    color:root.color
+	    TextInput:
+	        id:txtatividade
+		    multiline: 1
+	    Button:
+		    text: "Enviar Relatório"
+		    on_press: root.enviar()
+	    Button:
+		    text: "Retornar a Tela Inicial"
+		    on_release: root.manager.current = 'EnferControl'
+<TelaAtualizacao>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'background.jpg'
+    txtnome: txtnome
+    txttitulo: txttitulo
+    spnturma: spnturma
+    spnlocal: spnlocal
+    spnsetor: spnsetor
+    spnhoras: spnhoras
+    txtinicio: txtinicio
+    txtfim: txtfim
+    txtatividade: txtatividade
+    GridLayout:
+        cols:2
+	    Label:
+	        id:lblNome
+		    text: "Nome: "
+		    color:root.color
+	    TextInput:
+	        id:txtnome
+		    multiline:0
+		Label:
+	        id:lblTitulo
+		    text: "Titulo: "
+		    color:root.color
+	    TextInput:
+	        id:txttitulo
+	        text: 'Relatório de dd/mm/aaaa'
+		    multiline:0
+		Label:
+		    text: "Turma: "
+		    color:root.color
+	    Spinner:
+	        id:spnturma
+	        text: "Selecione a turma!"
+		    values:('3151', '3152', '3251', '3252')
+		    background_color: 200, 0, 0, 1
+		Label:
+		    text: "Local: "
+		    color:root.color
+	    Spinner:
+	        id:spnlocal
+	        text: "Selecione o local!"
+		    values:('Hospital Rocha Faria', 'UPA Jardim Novo')
+		    background_color: 200, 0, 0, 1
+		Label:
+	        id:lblinicio
+		    text: "Data de Inicio: "
+		    color:root.color
+	    TextInput:
+	        id:txtinicio
+	        text:"dd/mm/aaaa"
+	        multiline: 0
+	    Label:
+	        id:lblinicio
+		    text: "Data do Término: "
+		    color:root.color
+	    TextInput:
+	        id:txtfim
+	        text:"dd/mm/aaaa"
+	        multiline: 0
+	    Label:
+		    text: "Setor: "
+		    color:root.color
+	    Spinner:
+	        id:spnsetor
+	        background_color: 200, 0, 0, 1
+	        text: "Selecione um setor!"
+		    values:('Emergência', 'Saúde Mental', 'Saúde da Mulher e da Criança', 'Saúde Coletiva','Hospital Geral', 'Posto')
+	    Label:
+		    text: "Horas Efetuadas: "
+		    color:root.color
+	    Spinner:
+	        id:spnhoras
+	        background_color: 200, 0, 0, 1
+	        text: "1"
+		    values:('123456')
+	    Label:
+		    text: "Atividades observadas: "
+		    color:root.color
+	    TextInput:
+	        id:txtatividade
+		    multiline: 1
+	    Button:
+		    text: "Atualizar Relatório"
+		    on_press: root.enviar()
+	    Button:
+		    text: "Retornar a Tela Inicial"
+		    on_release: root.manager.current = 'EnferControl'
+
+<TelaConsulta>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source:'background.jpg'
+    lblNome:lblNome
+    lblTitulo:lblTitulo
+    lblTurma:lblTurma
+    lblInicio:lblInicio
+    lblTermino:lblTermino
+    lblLocal:lblLocal
+    lblSetor:lblSetor
+    lblHorario:lblHorario
+    lblRelatorio:lblRelatorio
+    StackLayout:
+        spacing:[30, 2]
+        orientation:"tb-lr"
+        SuperLabel:
+            text:"Nome:"
+        SuperLabel:
+            text:"Titulo:"
+        SuperLabel:
+            text:"Turma:"
+        SuperLabel:
+            text:"Local:"
+        SuperLabel:
+            text: "Data de Inicio"
+        EditableLabel:
+            id:lblNome
+            text:""
+        EditableLabel
+            id:lblTitulo
+            text:""
+        EditableLabel
+            id:lblTurma
+            text:""
+        EditableLabel
+            id:lblLocal
+            text:""
+        EditableLabel
+            id:lblInicio
+            text:""
+        SuperLabel:
+            text:"Data de Termino:"
+        SuperLabel:
+            text:"Setor:"
+        SuperLabel:
+            text:"Horas Efetuadas:"
+        SuperLabel:
+            text:"Atividades Observadas:"
+        SuperLabel:
+        EditableLabel:
+            id:lblTermino
+            text:""
+        EditableLabel:
+            id:lblSetor
+            text:""
+        EditableLabel:
+            id:lblHorario
+            text:""
+        EditableLabel:
+            id:lblRelatorio
+            text:""
+    FloatLayout
+        Button:
+            size_hint:None, None
+            width:200
+            height:100
+            pos_hint:{'x':.45, 'y':0}
+            text:"Retornar a Tela Inicial"
+            on_release: root.manager.current = 'EnferControl'
+        Button:
+            size_hint:None, None
+            width:250
+            height:100
+            pos_hint:{'x':.70, 'y':0}
+            text:"Imprimir Relatório"
+            on_release: root.click()
+<SuperLabel@Label>:
+    text:''
+    font_size: "15sp"
+    size_hint: .2, .2
+    color:200, 0, 0, 1
+<EditableLabel@Label>:
+    text:''
+    font_size: "15sp"
+    size_hint: .2, .2
+    color:400, 0, 400, 1
+
+
+
+
+
+
+
+		
+
+
+
