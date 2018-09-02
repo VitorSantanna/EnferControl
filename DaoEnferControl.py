@@ -45,7 +45,7 @@ def consultar_dados(ident):
             """%ident)
         for x in cursor.fetchall():
             x = x
-            saida = x
+        saida = x
     except DatabaseError:
         raise print("Database Error!")
     except ProgrammingError:
@@ -53,12 +53,20 @@ def consultar_dados(ident):
     except BaseException:
         raise print("Erro!")
     return saida
+
+
 def atualizar_dados(*lista):
     try:
-        cursor.execute("""UPDATE estudantes""", *lista)
+        cursor.execute("""UPDATE estudantes
+        SET nome = ?, titulo = ?, turma = ?, local = ?, data_inicio = ?, data_fim = ?, setor = ?, horas = ?, atividades = ?
+        WHERE id = ?""", (*lista,))
+        conexao.commit()
+        saida = "Relatório atualizado com sucesso!"
     except DatabaseError:
         saida = "Impossível atualizar os dados"
     return saida
+
+
 def imprimir_relatorio():
     cursor.execute("SELECT * FROM estudantes Where id = '%s'"%1)
 
@@ -66,6 +74,18 @@ def imprimir_relatorio():
     data = cursor.fetchall()
     df = pd.DataFrame(list(data), columns=columns)
 
-    writer = pd.ExcelWriter('foo.xlsx')
+    writer = pd.ExcelWriter("%s.xlsx"%data[0][1])
     df.to_excel(writer, sheet_name='bar')
     writer.save()
+
+
+def contar_linhas():
+    cursor.execute("""
+                    SELECT * from estudantes
+                """)
+    for x in cursor.description:
+        print(x[0])
+
+
+
+

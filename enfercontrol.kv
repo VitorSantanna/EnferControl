@@ -1,5 +1,4 @@
 #:import random random.random
-#coding: utf-8
 
 <TelaPrincipal>:
     canvas.before:
@@ -8,8 +7,7 @@
             size: self.size
             source: 'background.jpg'
     BoxLayout:
-        size_hint: .3, None
-        height: 100
+        size_hint: .3, .1
         pos_hint: {'center_x': .5, 'center_y': .5}
         orientation: 'vertical'
         Button:
@@ -17,12 +15,22 @@
             on_release: root.manager.current = 'Tela de Cadastro'
             markup: 1
         Button:
-            text: "Atualizar Relatório"
-            on_release: root.manager.current = 'Tela de Atualizaçao'
-            markup: 1
+            text: "Em Breve"
+            disabled:1
         Button:
-            text: 'Consultar Relatório'
-            on_release: root.manager.current = 'Tela de Consulta'
+            text: "Em Breve"
+            disabled:1
+        Button:
+            text: "Em Breve"
+            disabled:1
+
+#        Button:
+#            text: "Atualizar Relatório"
+#            on_release: root.manager.current = 'Tela de Atualizaçao'
+#            markup: 1
+#        Button:
+#            text: 'Consultar Relatório'
+#            on_release: root.manager.current = 'Tela de Selecao'
 <TelaCadastro>:
     canvas.before:
         Rectangle:
@@ -32,7 +40,7 @@
     txtnome: txtnome
     txttitulo: txttitulo
     spnturma: spnturma
-    spnlocal: spnlocal
+    txtlocal: txtlocal
     spnsetor: spnsetor
     spnhoras: spnhoras
     txtinicio: txtinicio
@@ -66,11 +74,9 @@
 		Label:
 		    text: "Local: "
 		    color:root.color
-	    Spinner:
-	        id:spnlocal
-	        text: "Selecione o local!"
-		    values:('Hospital Rocha Faria', 'UPA Jardim Novo')
-		    background_color: 200, 0, 0, 1
+	    TextInput:
+	        id:txtlocal
+	        text: "Digite um local!"
 		Label:
 	        id:lblinicio
 		    text: "Data de Inicio: "
@@ -124,7 +130,7 @@
     txtnome: txtnome
     txttitulo: txttitulo
     spnturma: spnturma
-    spnlocal: spnlocal
+    txtlocal: txtlocal
     spnsetor: spnsetor
     spnhoras: spnhoras
     txtinicio: txtinicio
@@ -158,11 +164,9 @@
 		Label:
 		    text: "Local: "
 		    color:root.color
-	    Spinner:
-	        id:spnlocal
-	        text: "Selecione o local!"
-		    values:('Hospital Rocha Faria', 'UPA Jardim Novo')
-		    background_color: 200, 0, 0, 1
+	    TextInput:
+			id:txtlocal
+			text:"Insira um local"
 		Label:
 	        id:lblinicio
 		    text: "Data de Inicio: "
@@ -173,7 +177,7 @@
 	        multiline: 0
 	    Label:
 	        id:lblinicio
-		    text: "Data do Término: "
+		    text: "Data do Termino: "
 		    color:root.color
 	    TextInput:
 	        id:txtfim
@@ -223,80 +227,111 @@
     lblSetor:lblSetor
     lblHorario:lblHorario
     lblRelatorio:lblRelatorio
-    StackLayout:
-        spacing:[30, 2]
-        orientation:"tb-lr"
-        SuperLabel:
+    GridLayout:
+        padding:('100dp')
+        cols:2
+        rows:9
+        Label:
             text:"Nome:"
-        SuperLabel:
-            text:"Titulo:"
-        SuperLabel:
-            text:"Turma:"
-        SuperLabel:
-            text:"Local:"
-        SuperLabel:
-            text: "Data de Inicio"
-        EditableLabel:
+            font_size: '12sp'
+            color: (200, 0, 0, 1)
+        Label:
             id:lblNome
+            font_size: '12sp'
             text:""
-        EditableLabel
+            color: (300, 0, 0, 1)
+        Label:
+            text:"Titulo:"
+            font_size: '12sp'
+            color: (200, 0, 0, 1)
+        Label:
             id:lblTitulo
+            font_size: '12sp'
             text:""
-        EditableLabel
+            color: (300, 0, 0, 1)
+        Label:
+            text:"Turma:"
+            font_size: '12sp'
+            color: (200, 0, 0, 1)
+        Label:
             id:lblTurma
+            font_size: '12sp'
             text:""
-        EditableLabel
+            color: (300, 0, 0, 1)
+        Label:
+            text:"Local:"
+            font_size: '12sp'
+            color: (200, 0, 0, 1)
+        Label:
             id:lblLocal
+            font_size: '12sp'
             text:""
-        EditableLabel
+            color: (300, 0, 0, 1)
+        Label:
+            text: "Data de Inicio"
+            font_size: '12sp'
+            color: (200, 0, 0, 1)
+        Label:
             id:lblInicio
+            font_size: '12sp'
             text:""
-        SuperLabel:
+            color: (300, 0, 0, 1)
+        Label:
             text:"Data de Termino:"
-        SuperLabel:
-            text:"Setor:"
-        SuperLabel:
-            text:"Horas Efetuadas:"
-        SuperLabel:
-            text:"Atividades Observadas:"
-        SuperLabel:
-        EditableLabel:
+            color: (200, 0, 0, 1)
+            font_size: '12sp'
+        Label:
             id:lblTermino
             text:""
-        EditableLabel:
+            color: (300, 0, 0, 1)
+            font_size: '12sp'
+        Label:
+            text:"Setor:"
+            color: (200, 0, 0, 1)
+            font_size: '12sp'
+        Label:
             id:lblSetor
             text:""
-        EditableLabel:
+            color: (300, 0, 0, 1)
+            font_size: '12sp'
+        Label:
+            text:"Horas Efetuadas:"
+            color: (200, 0, 0, 1)
+            font_size: '12sp'
+        Label:
             id:lblHorario
             text:""
-        EditableLabel:
+            color: (300, 0, 0, 1)
+            font_size: '12sp'
+        Label:
+            text:"Atividades Observadas:"
+            color: (200, 0, 0, 1)
+            font_size: '12sp'
+        Label:
             id:lblRelatorio
             text:""
+            font_size: '12sp'
+            color: (300, 0, 0, 1)
     FloatLayout
         Button:
-            size_hint:None, None
-            width:200
-            height:100
-            pos_hint:{'x':.45, 'y':0}
+            size_hint:.15, .1
+            pos_hint:{'x':.7, 'y':0}
+            font_size:('12sp')
             text:"Retornar a Tela Inicial"
             on_release: root.manager.current = 'EnferControl'
         Button:
-            size_hint:None, None
-            width:250
-            height:100
-            pos_hint:{'x':.70, 'y':0}
+            size_hint:.15, .1
+            pos_hint:{'x':.85, 'y':0}
+            font_size:('12sp')
             text:"Imprimir Relatório"
             on_release: root.click()
-<SuperLabel@Label>:
-    text:''
-    font_size: "15sp"
-    size_hint: .2, .2
-    color:200, 0, 0, 1
-<EditableLabel@Label>:
-    text:''
-    font_size: "15sp"
-    size_hint: .2, .2
-    color:400, 0, 400, 1
+<TelaSelecao>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'background.jpg'
+
 
 
 
