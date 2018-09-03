@@ -1,5 +1,4 @@
 #:import random random.random
-
 <TelaPrincipal>:
     canvas.before:
         Rectangle:
@@ -7,30 +6,32 @@
             size: self.size
             source: 'background.jpg'
     BoxLayout:
-        size_hint: .3, .1
+        size_hint: .3, .3
         pos_hint: {'center_x': .5, 'center_y': .5}
         orientation: 'vertical'
         Button:
             text: "Cadastrar Relatório"
             on_release: root.manager.current = 'Tela de Cadastro'
             markup: 1
-        Button:
-            text: "Em Breve"
-            disabled:1
-        Button:
-            text: "Em Breve"
-            disabled:1
-        Button:
-            text: "Em Breve"
-            disabled:1
+#        Button:
+#            text: "Atualizar Relatorio - Em Breve"
+#            disabled:1
+#        Button:
+#            text: "Consultar Relatorio - Em Breve"
+#            disabled:1
+#        Button:
+#            text: "Termos Tecnicos - Em Breve"
+#            disabled:1
 
-#        Button:
-#            text: "Atualizar Relatório"
-#            on_release: root.manager.current = 'Tela de Atualizaçao'
-#            markup: 1
-#        Button:
-#            text: 'Consultar Relatório'
-#            on_release: root.manager.current = 'Tela de Selecao'
+
+
+        Button:
+            text: "Atualizar Relatório"
+            on_release: root.manager.current = 'Tela de Atualizaçao'
+            markup: 1
+        Button:
+            text: 'Consultar Relatório'
+            on_release: root.manager.current = 'Tela de Selecao'
 <TelaCadastro>:
     canvas.before:
         Rectangle:
@@ -87,7 +88,7 @@
 	        multiline: 0
 	    Label:
 	        id:lblinicio
-		    text: "Data do Término: "
+		    text: "Data do Termino: "
 		    color:root.color
 	    TextInput:
 	        id:txtfim
@@ -331,6 +332,33 @@
             pos: self.pos
             size: self.size
             source: 'background.jpg'
+    FloatLayout:
+        Label:
+            text:"Lista de Relatorios"
+            color:300, 0, 0, 1
+            size_hint: .1, .1
+            pos_hint:{'x': .45, 'y':.9}
+        Label:
+            text:"Id"
+            color:300, 0, 0, 1
+            size_hint: .1, .1
+            pos_hint:{'x': .3, 'y':.8}
+        Label:
+            text:"Titulo"
+            color:300, 0, 0, 1
+            size_hint: .1, .1
+            pos_hint:{'x': .6, 'y':.8}
+        Button:
+            text:"Retornar a tela inicial"
+            size_hint:.2, .1
+            pos_hint:{'x': .65, 'y':0}
+            on_release:root.manager.current = 'EnferControl'
+        Button:
+            text:"Verificar relatório"
+            size_hint:.15, .1
+            pos_hint:{'x': .85, 'y':0}
+            on_release:root.manager.current = 'Tela de Consulta'
+
 
 
 

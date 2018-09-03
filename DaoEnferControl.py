@@ -84,7 +84,7 @@ def contar_linhas():
                     SELECT * from estudantes
                 """)
     for x in cursor.description:
-        print(x[0])
+        print(x[-1])
 
 
 

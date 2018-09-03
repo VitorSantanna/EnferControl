@@ -14,11 +14,13 @@ from kivy.properties import ObjectProperty
 from kivy.lang.builder import Builder
 import DaoEnferControl as s
 
+
 s.criar_tabela()
-s.contar_linhas()
+
 
 class TelaPrincipal(Screen):
     pass
+
 
 class TelaCadastro(Screen):
     color = 200, 200, 200, 1
@@ -51,7 +53,7 @@ class TelaCadastro(Screen):
 
 
 class TelaSelecao(Screen):
-    pass
+    s.contar_linhas()
 
 
 class TelaAtualizacao(Screen):
@@ -96,9 +98,8 @@ class TelaConsulta(Screen):
     spnsetor = ObjectProperty(None)
     spnhoras = ObjectProperty(None)
 
-    def click(self):
+    def on_pre_enter(self, *args):
         r = s.consultar_dados(1)
-        i = s.imprimir_relatorio()
         saida =['', '', '', '', '', '', '', '', '', '']
         for y in range(10):
             saida[y] = r[y]
@@ -116,6 +117,9 @@ class TelaConsulta(Screen):
         self.ids.lblSetor.text = saida[7]
         self.ids.lblHorario.text = str(saida[8])
         self.ids.lblRelatorio.text = saida[9]
+
+    def click(self):
+        i = s.imprimir_relatorio
 
 
 class EnferControlApp(App):
